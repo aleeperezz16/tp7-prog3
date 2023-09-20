@@ -24,6 +24,9 @@
         .auto-style5 {
             height: 75px;
         }
+        .auto-style6 {
+            text-align: left;
+        }
     </style>
 </head>
 <body>
@@ -46,8 +49,12 @@
                 </tr>
                 <tr>
                     <td class="auto-style2">&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
+                    <td>
+                        <asp:Label ID="lblBusquedasucursal" runat="server" Text="Busqueda por nombre de sucursal:"></asp:Label>
+                    </td>
+                    <td class="auto-style6">
+                        <asp:TextBox ID="tbBusquedasucursal" runat="server"></asp:TextBox>
+                    </td>
                 </tr>
                 <tr>
                     <td class="auto-style2">&nbsp;</td>

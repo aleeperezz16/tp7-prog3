@@ -11,14 +11,15 @@
             width: 100%;
         }
         .auto-style2 {
-            width: 230px;
+            width: 219px;
         }
         .auto-style3 {
-            font-size: x-large;
+            font-size: xx-large;
             height: 75px;
+            width: 374px;
         }
         .auto-style4 {
-            width: 230px;
+            width: 219px;
             height: 75px;
         }
         .auto-style5 {
@@ -26,12 +27,31 @@
         }
         .auto-style6 {
             text-align: left;
+            height: 47px;
+        }
+        .auto-style7 {
+            width: 219px;
+            height: 237px;
+        }
+        .auto-style8 {
+            height: 237px;
+        }
+        .auto-style9 {
+            width: 219px;
+            height: 47px;
+        }
+        .auto-style10 {
+            height: 47px;
+            width: 374px;
+        }
+        .auto-style11 {
+            height: 237px;
+            width: 374px;
         }
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
             <table class="auto-style1">
                 <tr>
                     <td class="auto-style2">&nbsp;</td>
@@ -48,8 +68,8 @@
                     <td class="auto-style5"></td>
                 </tr>
                 <tr>
-                    <td class="auto-style2">&nbsp;</td>
-                    <td>
+                    <td class="auto-style9"></td>
+                    <td class="auto-style10">
                         <asp:Label ID="lblBusquedasucursal" runat="server" Text="Busqueda por nombre de sucursal:"></asp:Label>
                     </td>
                     <td class="auto-style6">
@@ -57,12 +77,22 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style2">&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
+                    <td class="auto-style7">
+                        <br />
+                        <br />
+                        <br />
+                        <asp:DataList ID="dlProvincias" runat="server" DataKeyField="Id_Provincia" DataSourceID="SqlDataSource1" Height="362px" Width="180px">
+                            <ItemTemplate>
+                                <asp:Button ID="btnProvincias" runat="server" Text='<%# Eval("DescripcionProvincia") %>' Height="25px" Width="190px" />
+                            </ItemTemplate>
+                        </asp:DataList>
+                        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BDSucursalesConnectionString %>" SelectCommand="SELECT * FROM [Provincia]"></asp:SqlDataSource>
+                        <br />
+                    </td>
+                    <td class="auto-style11"></td>
+                    <td class="auto-style8"></td>
                 </tr>
             </table>
-        </div>
     </form>
 </body>
 </html>

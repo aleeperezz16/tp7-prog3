@@ -14,6 +14,14 @@ namespace tp7_prog3
 
         }
 
-        
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+            string text = txtBuscar.Text.Trim();
+            SqlDataSource2.SelectCommand =
+                "SELECT Id_Sucursal, NombreSucursal, DescripcionSucursal, Id_ProvinciaSucursal, URL_Imagen_Sucursal FROM Sucursal" +
+                (text.Length > 0 ? $" WHERE NombreSucursal LIKE '%{text}%'" : "");
+
+            txtBuscar.Text = "";
+        }
     }
 }

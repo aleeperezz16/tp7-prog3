@@ -44,10 +44,6 @@
             height: 47px;
             width: 374px;
         }
-        .auto-style11 {
-            height: 237px;
-            width: 374px;
-        }
         .auto-style12 {
             width: 244px;
             text-align:center;
@@ -55,6 +51,9 @@
         .auto-style13 {
             width: 244px;
             text-align:left;
+        }
+        .auto-style14 {
+            margin-left: 25px;
         }
     </style>
 </head>
@@ -66,7 +65,7 @@
                     <td>
                         <asp:HyperLink ID="lnkListadoSucursales" runat="server" NavigateUrl="~/SeleccionarSucursales.aspx">Listado de sucursales</asp:HyperLink>
                     </td>
-                    <td style="text-align: center">
+                    <td style="padding-left: 100px;">
                         <asp:HyperLink ID="lnkMostrarSeleccionadas" runat="server" NavigateUrl="~/ListadoSucursalesSeleccionadas.aspx">Mostrar sucursales seleccionadas</asp:HyperLink>
                     </td>
                 </tr>
@@ -81,7 +80,8 @@
                         <asp:Label ID="lblBusquedasucursal" runat="server" Text="Busqueda por nombre de sucursal:"></asp:Label>
                     </td>
                     <td class="auto-style6">
-                        <asp:TextBox ID="tbBusquedasucursal" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtBuscar" runat="server" Width="250px"></asp:TextBox>
+                        <asp:Button ID="btnBuscar" runat="server" CssClass="auto-style14" OnClick="btnBuscar_Click" Text="Buscar" />
                     </td>
                 </tr>
                 <tr>
@@ -98,7 +98,7 @@
                         <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:BDSucursalesConnectionString %>" SelectCommand="SELECT [Id_Sucursal], [NombreSucursal], [DescripcionSucursal], [Id_ProvinciaSucursal], [URL_Imagen_Sucursal] FROM [Sucursal]"></asp:SqlDataSource>
                         <br />
                     </td>
-                    <td class="auto-style11">
+                    <td class="auto-style8" colspan="2">
                         <asp:ListView ID="lvSucursales" runat="server" DataKeyNames="Id_Sucursal" DataSourceID="SqlDataSource2" GroupItemCount="3">
                             <EditItemTemplate>
                                 <td runat="server" style="background-color:#008A8C;color: #FFFFFF;">Id_Sucursal:
@@ -227,7 +227,6 @@
                             </SelectedItemTemplate>
                         </asp:ListView>
                     </td>
-                    <td class="auto-style8"></td>
                 </tr>
             </table>
     </form>

@@ -48,6 +48,14 @@
             height: 237px;
             width: 374px;
         }
+        .auto-style12 {
+            width: 244px;
+            text-align:center;
+        }
+        .auto-style13 {
+            width: 244px;
+            text-align:left;
+        }
     </style>
 </head>
 <body>
@@ -149,15 +157,30 @@
                                 </td>
                             </InsertItemTemplate>
                             <ItemTemplate>
-                                <td runat="server" style="background-color:#DCDCDC;color: #000000;">&nbsp;<asp:Label ID="NombreSucursalLabel" runat="server" Text='<%# Eval("NombreSucursal") %>' />
-                                    <br />
-                                    <asp:ImageButton ID="ImageButton1" runat="server" Height="300px" ImageUrl='<%# Eval("URL_Imagen_Sucursal") %>' Width="270px" />
-                                    <br />
-                                    <asp:Label ID="DescripcionSucursalLabel" runat="server" Text='<%# Eval("DescripcionSucursal") %>' />
-                                    <br />
+                                <td runat="server" style="background-color:#DCDCDC;color: #000000;">
+                                    <table class="auto-style1">
+                                        <tr>
+                                            <td class="auto-style12">
+                                                <asp:Label ID="lblNombreSucursal" runat="server" Font-Bold="True" Text='<%# Eval("NombreSucursal") %>' textID="NombreSucursalLabel"></asp:Label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="auto-style12">
+                                                <asp:ImageButton ID="ImageButton1" runat="server" Height="300px" ImageAlign="Middle" ImageUrl='<%# Eval("URL_Imagen_Sucursal") %>' Width="250px" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="auto-style13">
+                                                <asp:Label ID="lblDescripcionSucursal" runat="server" Height="75px" Text='<%# Eval("DescripcionSucursal") %>'></asp:Label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="auto-style12">
+                                                <asp:Button ID="btnSeleccionar" runat="server" Height="27px" Text="Seleccionar" Width="92px" />
+                                            </td>
+                                        </tr>
+                                    </table>
                                     <asp:Label ID="ProvinciaSucursalID" runat="server" Text='<%# Eval("Id_ProvinciaSucursal") %>' Visible="False"></asp:Label>
-                                    <br />
-                                    <asp:Button ID="btnSeleccionar" runat="server" Height="27px" Text="Seleccionar" Width="92px" />
                                     <br />
                                 </td>
                             </ItemTemplate>

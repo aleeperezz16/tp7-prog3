@@ -23,5 +23,15 @@ namespace tp7_prog3
 
             txtBuscar.Text = "";
         }
+
+        protected void btnSeleccionar_Command(object sender, CommandEventArgs e)
+        {
+            if (e.CommandName == "eventoSeleccionar")
+            {
+                Session["DatosSuc"] = e.CommandArgument.ToString();
+               
+               
+            }
+        }
     }
 }

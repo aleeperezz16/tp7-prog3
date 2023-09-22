@@ -91,7 +91,7 @@
                         <br />
                         <asp:DataList ID="dlProvincias" runat="server" DataKeyField="Id_Provincia" DataSourceID="SqlDataSource1" Height="362px" Width="180px">
                             <ItemTemplate>
-                                <asp:Button ID="btnProvincias" runat="server" Text='<%# Eval("DescripcionProvincia") %>' Height="25px" Width="190px" />
+                                <asp:Button ID="btnProvincias" runat="server" Text='<%# Eval("DescripcionProvincia") %>' Height="25px" Width="190px" CommandArgument='<%# Eval("Id_Provincia", "{0:N}") %>' CommandName="BtnProvinciaID" OnCommand="btnProvincias_Command" />
                             </ItemTemplate>
                         </asp:DataList>
                         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BDSucursalesConnectionString %>" SelectCommand="SELECT * FROM [Provincia]"></asp:SqlDataSource>
@@ -180,8 +180,6 @@
                                             </td>
                                         </tr>
                                     </table>
-                                    <asp:Label ID="ProvinciaSucursalID" runat="server" Text='<%# Eval("Id_ProvinciaSucursal") %>' Visible="False"></asp:Label>
-                                    <br />
                                 </td>
                             </ItemTemplate>
                             <LayoutTemplate>

@@ -30,8 +30,22 @@ namespace tp7_prog3
             {
                 Session["DatosSuc"] = e.CommandArgument.ToString();
                
-               
             }
+        }
+
+        protected void btnProvincias_Command(object sender, CommandEventArgs e)
+        {
+            if (e.CommandName == "BtnProvinciaID")
+            {
+                string provinciaID = e.CommandArgument.ToString();
+                SqlDataSource2.SelectCommand =
+                "SELECT Id_Sucursal, NombreSucursal, DescripcionSucursal, Id_ProvinciaSucursal, URL_Imagen_Sucursal FROM Sucursal WHERE Id_ProvinciaSucursal = " + provinciaID;
+            }
+        }
+
+        protected void lvSucursales_PagePropertiesChanging(object sender, PagePropertiesChangingEventArgs e)
+        {
+            
         }
     }
 }

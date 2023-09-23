@@ -91,7 +91,7 @@
                         <br />
                         <asp:DataList ID="dlProvincias" runat="server" DataKeyField="Id_Provincia" DataSourceID="SqlDataSource1" Height="362px" Width="180px">
                             <ItemTemplate>
-                                <asp:Button ID="btnProvincias" runat="server" Text='<%# Eval("DescripcionProvincia") %>' Height="25px" Width="190px" CommandArgument='<%# Eval("Id_Provincia", "{0:N}") %>' CommandName="BtnProvinciaID" OnCommand="btnProvincias_Command" />
+                                <asp:Button ID="btnProvincias" runat="server" Text='<%# Eval("DescripcionProvincia") %>' Height="25px" Width="190px" CommandArgument='<%# Eval("Id_Provincia") %>' CommandName="BtnProvinciaID" OnCommand="btnProvincias_Command" />
                             </ItemTemplate>
                         </asp:DataList>
                         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BDSucursalesConnectionString %>" SelectCommand="SELECT * FROM [Provincia]"></asp:SqlDataSource>
@@ -194,7 +194,7 @@
                                     </tr>
                                     <tr runat="server">
                                         <td runat="server" style="text-align: center;background-color: #CCCCCC;font-family: Verdana, Arial, Helvetica, sans-serif;color: #000000;">
-                                            <asp:DataPager ID="DataPager1" runat="server" PageSize="6">
+                                            <asp:DataPager ID="dpSucursales" runat="server" PageSize="6">
                                                 <Fields>
                                                     <asp:NextPreviousPagerField ButtonType="Button" ShowFirstPageButton="True" ShowNextPageButton="False" ShowPreviousPageButton="False" />
                                                     <asp:NumericPagerField />

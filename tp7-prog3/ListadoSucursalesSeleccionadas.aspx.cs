@@ -12,14 +12,12 @@ namespace tp7_prog3
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["DatosSuc"] != null) {
-
+            if (Session["DatosSuc"] != null) 
+            {
                 DataTable datosSucursales = (DataTable)Session["DatosSuc"];
 
                 grvSucursalesSeleccionadas.DataSource = datosSucursales;
                 grvSucursalesSeleccionadas.DataBind();
-
-              
             }
         }
     }

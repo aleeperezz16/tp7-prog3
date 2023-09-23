@@ -16,6 +16,8 @@ namespace tp7_prog3
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
+            ReiniciarPagina();
+
             string text = txtBuscar.Text.Trim();
             SqlDataSource2.SelectCommand =
                 "SELECT Id_Sucursal, NombreSucursal, DescripcionSucursal, Id_ProvinciaSucursal, URL_Imagen_Sucursal FROM Sucursal" +
@@ -32,12 +34,20 @@ namespace tp7_prog3
                 {
                     Session["DatosSuc"] = CrearTabla();
                 }
-                string[] valores = e.CommandArgument.ToString().Split(';');
-                agregarFila((DataTable)Session["DatosSuc"], valores);
 
-                
+                string[] valores = e.CommandArgument.ToString().Split(';');
+                AgregarFila((DataTable)Session["DatosSuc"], valores);
             }
         }
+
+        private void ReiniciarPagina()
+        {
+            DataPager pager = (DataPager)lvSucursales.FindControl("dpSucursales");
+
+            if (pager != null)
+                pager.SetPageProperties(0, pager.MaximumRows, true);
+        }
+
         private DataTable CrearTabla()
         {
             DataTable dt = new DataTable();
@@ -48,37 +58,32 @@ namespace tp7_prog3
 
             return dt;
         }
-        public void agregarFila(DataTable tabla, string[] valores)
+        public void AgregarFila(DataTable tabla, string[] valores)
         {
-            if (tabla.Rows.Count != 0)
+            foreach (DataRow fila in tabla.Rows)
             {
-                foreach (DataRow fila in tabla.Rows)
-                {
-                    if (fila["Id_Sucursal"].ToString() == valores[0])
-                    {
-                        return;
-                    }
-                }
+                if (fila["Id_Sucursal"].ToString() == valores[0])
+                    return;
             }
+
             DataRow dr = tabla.NewRow();
+            
             dr["ID_Sucursal"] = valores[0];
             dr["Nombre"] = valores[1];
             dr["Descripcion"] = valores[2];
+            
             tabla.Rows.Add(dr);
         }
         protected void btnProvincias_Command(object sender, CommandEventArgs e)
         {
             if (e.CommandName == "BtnProvinciaID")
             {
+                ReiniciarPagina();
+
                 string provinciaID = e.CommandArgument.ToString();
                 SqlDataSource2.SelectCommand =
                 "SELECT Id_Sucursal, NombreSucursal, DescripcionSucursal, Id_ProvinciaSucursal, URL_Imagen_Sucursal FROM Sucursal WHERE Id_ProvinciaSucursal = " + provinciaID;
             }
-        }
-
-        protected void lvSucursales_PagePropertiesChanging(object sender, PagePropertiesChangingEventArgs e)
-        {
-            
         }
     }
 }

@@ -35,7 +35,7 @@
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <asp:GridView ID="grvSucursalesSeleccionadas" runat="server">
+                        <asp:GridView ID="grvSucursalesSeleccionadas" runat="server" Width="560px">
                         </asp:GridView>
                     </td>
                 </tr>

@@ -176,7 +176,7 @@
                                         </tr>
                                         <tr>
                                             <td class="auto-style12">
-                                                <asp:Button ID="btnSeleccionar" runat="server" Height="27px" Text="Seleccionar" Width="92px" CommandArgument='<%# Eval("Id_Sucursal")+" "+Eval("NombreSucursal")+" "+Eval("DescripcionSucursal") %>' CommandName="eventoSeleccionar" OnCommand="btnSeleccionar_Command" />
+                                                <asp:Button ID="btnSeleccionar" runat="server" Height="27px" Text="Seleccionar" Width="92px" CommandArgument='<%# Eval("Id_Sucursal")+";"+Eval("NombreSucursal")+";"+Eval("DescripcionSucursal") %>' CommandName="eventoSeleccionar" OnCommand="btnSeleccionar_Command" />
                                             </td>
                                         </tr>
                                     </table>

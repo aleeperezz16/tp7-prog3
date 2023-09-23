@@ -32,8 +32,10 @@ namespace tp7_prog3
                 {
                     Session["DatosSuc"] = CrearTabla();
                 }
-                string[] valores = e.CommandArgument.ToString().Split(' ');
+                string[] valores = e.CommandArgument.ToString().Split(';');
                 agregarFila((DataTable)Session["DatosSuc"], valores);
+
+                
             }
         }
         private DataTable CrearTabla()

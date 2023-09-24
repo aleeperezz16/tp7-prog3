@@ -11,7 +11,15 @@ namespace tp7_prog3
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                Session["Consulta"] = null;
+            }
+            else
+            {
+                if (Session["Consulta"] != null)
+                    sqlSucursales.SelectCommand = Session["Consulta"].ToString();
+            }
         }
 
         protected void btnBuscar_Click(object sender, EventArgs e)
@@ -19,9 +27,8 @@ namespace tp7_prog3
             ReiniciarPagina();
 
             string text = txtBuscar.Text.Trim();
-            SqlDataSource2.SelectCommand =
-                "SELECT Id_Sucursal, NombreSucursal, DescripcionSucursal, Id_ProvinciaSucursal, URL_Imagen_Sucursal FROM Sucursal" +
-                (text.Length > 0 ? $" WHERE NombreSucursal LIKE '%{text}%'" : "");
+            sqlSucursales.SelectCommand = "SELECT [Id_Sucursal], [NombreSucursal], [DescripcionSucursal], [URL_Imagen_Sucursal], [Id_ProvinciaSucursal] FROM [Sucursal]" + (text.Length > 0 ? $" WHERE ([NombreSucursal] LIKE '%{text}%')" : "");
+            Session["Consulta"] = sqlSucursales.SelectCommand; 
 
             txtBuscar.Text = "";
         }
@@ -38,14 +45,6 @@ namespace tp7_prog3
                 string[] valores = e.CommandArgument.ToString().Split(';');
                 AgregarFila((DataTable)Session["DatosSuc"], valores);
             }
-        }
-
-        private void ReiniciarPagina()
-        {
-            DataPager pager = (DataPager)lvSucursales.FindControl("dpSucursales");
-
-            if (pager != null)
-                pager.SetPageProperties(0, pager.MaximumRows, true);
         }
 
         private DataTable CrearTabla()
@@ -81,9 +80,18 @@ namespace tp7_prog3
                 ReiniciarPagina();
 
                 string provinciaID = e.CommandArgument.ToString();
-                SqlDataSource2.SelectCommand =
-                "SELECT Id_Sucursal, NombreSucursal, DescripcionSucursal, Id_ProvinciaSucursal, URL_Imagen_Sucursal FROM Sucursal WHERE Id_ProvinciaSucursal = " + provinciaID;
+                sqlSucursales.SelectCommand =
+                "SELECT [Id_Sucursal], [NombreSucursal], [DescripcionSucursal], [Id_ProvinciaSucursal], [URL_Imagen_Sucursal] FROM [Sucursal] WHERE [Id_ProvinciaSucursal] = " + provinciaID;
+                Session["Consulta"] = sqlSucursales.SelectCommand;
             }
+        }
+
+        private void ReiniciarPagina()
+        {
+            DataPager pager = (DataPager)lvSucursales.FindControl("dpSucursales");
+
+            if (pager != null)
+                pager.SetPageProperties(0, pager.MaximumRows, true);
         }
     }
 }

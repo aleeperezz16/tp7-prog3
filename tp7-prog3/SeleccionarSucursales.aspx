@@ -89,39 +89,15 @@
                         <br />
                         <br />
                         <br />
-                        <asp:DataList ID="dlProvincias" runat="server" DataKeyField="Id_Provincia" DataSourceID="SqlDataSource1" Height="362px" Width="180px">
+                        <asp:DataList ID="dlProvincias" runat="server" DataKeyField="Id_Provincia" DataSourceID="sqlProvincias" Height="362px" Width="180px">
                             <ItemTemplate>
                                 <asp:Button ID="btnProvincias" runat="server" Text='<%# Eval("DescripcionProvincia") %>' Height="25px" Width="190px" CommandArgument='<%# Eval("Id_Provincia") %>' CommandName="BtnProvinciaID" OnCommand="btnProvincias_Command" />
                             </ItemTemplate>
                         </asp:DataList>
-                        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BDSucursalesConnectionString %>" SelectCommand="SELECT * FROM [Provincia]"></asp:SqlDataSource>
-                        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:BDSucursalesConnectionString %>" SelectCommand="SELECT [Id_Sucursal], [NombreSucursal], [DescripcionSucursal], [Id_ProvinciaSucursal], [URL_Imagen_Sucursal] FROM [Sucursal]"></asp:SqlDataSource>
-                        <br />
+                        <asp:SqlDataSource ID="sqlProvincias" runat="server" ConnectionString="<%$ ConnectionStrings:BDSucursalesConnectionString %>" SelectCommand="SELECT * FROM [Provincia]"></asp:SqlDataSource>
                     </td>
                     <td class="auto-style8" colspan="2">
-                        <asp:ListView ID="lvSucursales" runat="server" DataKeyNames="Id_Sucursal" DataSourceID="SqlDataSource2" GroupItemCount="3">
-                            <EditItemTemplate>
-                                <td runat="server" style="background-color:#008A8C;color: #FFFFFF;">Id_Sucursal:
-                                    <asp:Label ID="Id_SucursalLabel1" runat="server" Text='<%# Eval("Id_Sucursal") %>' />
-                                    <br />
-                                    NombreSucursal:
-                                    <asp:TextBox ID="NombreSucursalTextBox" runat="server" Text='<%# Bind("NombreSucursal") %>' />
-                                    <br />
-                                    DescripcionSucursal:
-                                    <asp:TextBox ID="DescripcionSucursalTextBox" runat="server" Text='<%# Bind("DescripcionSucursal") %>' />
-                                    <br />
-                                    Id_ProvinciaSucursal:
-                                    <asp:TextBox ID="Id_ProvinciaSucursalTextBox" runat="server" Text='<%# Bind("Id_ProvinciaSucursal") %>' />
-                                    <br />
-                                    URL_Imagen_Sucursal:
-                                    <asp:TextBox ID="URL_Imagen_SucursalTextBox" runat="server" Text='<%# Bind("URL_Imagen_Sucursal") %>' />
-                                    <br />
-                                    <asp:Button ID="UpdateButton" runat="server" CommandName="Update" Text="Update" />
-                                    <br />
-                                    <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="Cancel" />
-                                    <br />
-                                </td>
-                            </EditItemTemplate>
+                        <asp:ListView ID="lvSucursales" runat="server" DataKeyNames="Id_Sucursal" DataSourceID="sqlSucursales" GroupItemCount="3">
                             <EmptyDataTemplate>
                                 <table runat="server" style="background-color: #FFFFFF;border-collapse: collapse;border-color: #999999;border-style:none;border-width:1px;">
                                     <tr>
@@ -129,33 +105,11 @@
                                     </tr>
                                 </table>
                             </EmptyDataTemplate>
-                            <EmptyItemTemplate>
-                                <td runat="server" />
-                            </EmptyItemTemplate>
                             <GroupTemplate>
                                 <tr id="itemPlaceholderContainer" runat="server">
                                     <td id="itemPlaceholder" runat="server"></td>
                                 </tr>
                             </GroupTemplate>
-                            <InsertItemTemplate>
-                                <td runat="server" style="">NombreSucursal:
-                                    <asp:TextBox ID="NombreSucursalTextBox" runat="server" Text='<%# Bind("NombreSucursal") %>' />
-                                    <br />
-                                    DescripcionSucursal:
-                                    <asp:TextBox ID="DescripcionSucursalTextBox" runat="server" Text='<%# Bind("DescripcionSucursal") %>' />
-                                    <br />
-                                    Id_ProvinciaSucursal:
-                                    <asp:TextBox ID="Id_ProvinciaSucursalTextBox" runat="server" Text='<%# Bind("Id_ProvinciaSucursal") %>' />
-                                    <br />
-                                    URL_Imagen_Sucursal:
-                                    <asp:TextBox ID="URL_Imagen_SucursalTextBox" runat="server" Text='<%# Bind("URL_Imagen_Sucursal") %>' />
-                                    <br />
-                                    <asp:Button ID="InsertButton" runat="server" CommandName="Insert" Text="Insert" />
-                                    <br />
-                                    <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="Clear" />
-                                    <br />
-                                </td>
-                            </InsertItemTemplate>
                             <ItemTemplate>
                                 <td runat="server" style="background-color:#DCDCDC;color: #000000;">
                                     <table class="auto-style1">
@@ -205,28 +159,8 @@
                                     </tr>
                                 </table>
                             </LayoutTemplate>
-                            <SelectedItemTemplate>
-                                <td runat="server" style="background-color:#008A8C;font-weight: bold;color: #FFFFFF;">Id_Sucursal:
-                                    <asp:Label ID="Id_SucursalLabel" runat="server" Text='<%# Eval("Id_Sucursal") %>' />
-                                    <br />
-                                    NombreSucursal:
-                                    <asp:Label ID="NombreSucursalLabel" runat="server" Text='<%# Eval("NombreSucursal") %>' />
-                                    <br />
-                                    DescripcionSucursal:
-                                    <asp:Label ID="DescripcionSucursalLabel" runat="server" Text='<%# Eval("DescripcionSucursal") %>' />
-                                    <br />
-                                    Id_ProvinciaSucursal:
-                                    <asp:Label ID="Id_ProvinciaSucursalLabel" runat="server" Text='<%# Eval("Id_ProvinciaSucursal") %>' />
-                                    <br />
-                                    URL_Imagen_Sucursal:
-                                    <asp:Label ID="URL_Imagen_SucursalLabel" runat="server" Text='<%# Eval("URL_Imagen_Sucursal") %>' />
-                                    <br />
-                                </td>
-                            </SelectedItemTemplate>
                         </asp:ListView>
-                        <br />
-                        <br />
-                        <br />
+                        <asp:SqlDataSource ID="sqlSucursales" runat="server" ConnectionString="<%$ ConnectionStrings:BDSucursalesConnectionString %>" SelectCommand="SELECT [Id_Sucursal], [NombreSucursal], [DescripcionSucursal], [URL_Imagen_Sucursal] FROM [Sucursal]"></asp:SqlDataSource>
                     </td>
                 </tr>
             </table>

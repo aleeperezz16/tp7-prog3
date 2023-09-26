@@ -7,25 +7,23 @@ namespace tp7_prog3.Clases
 {
     public class Sucursal
     {
-        private int _id;
+        private string _id;
         private string _nombre;
         private string _descripcion;
-        private int _provincia;
 
         public Sucursal()
         {
 
         }
 
-        public Sucursal(int id, string nombre, string descripcion, int provincia)
+        public Sucursal(string id, string nombre, string descripcion)
         {
             _id = id;
             _nombre = nombre;
             _descripcion = descripcion;
-            _provincia = provincia;
         }
 
-        public int Id
+        public string Id
         {
             get { return _id; }
             set { _id = value; }
@@ -41,12 +39,6 @@ namespace tp7_prog3.Clases
         {
             get { return _descripcion; }
             set { _descripcion = value; }
-        }
-
-        public int Provincia
-        {
-            get { return _provincia; }
-            set { _provincia = value; }
         }
     }
 }

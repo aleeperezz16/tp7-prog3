@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using tp7_prog3.Clases;
 
 namespace tp7_prog3
 {
@@ -40,40 +41,17 @@ namespace tp7_prog3
             {
                 if (Session["DatosSuc"] == null)
                 {
-                    Session["DatosSuc"] = CrearTabla();
+                    Session["DatosSuc"] = new List<Sucursal>();
                 }
 
                 string[] valores = e.CommandArgument.ToString().Split(';');
-                AgregarFila((DataTable)Session["DatosSuc"], valores);
+                Sucursal sucursal = new Sucursal(valores[0], valores[1], valores[2]);
+
+                if (!((List<Sucursal>)Session["DatosSuc"]).Exists(x => x.Id == valores[0]))
+                    ((List<Sucursal>)Session["DatosSuc"]).Add(sucursal);
             }
         }
 
-        private DataTable CrearTabla()
-        {
-            DataTable dt = new DataTable();
-
-            dt.Columns.Add(new DataColumn("ID_Sucursal", Type.GetType("System.String")));
-            dt.Columns.Add(new DataColumn("Nombre", Type.GetType("System.String")));
-            dt.Columns.Add(new DataColumn("Descripcion", Type.GetType("System.String")));
-
-            return dt;
-        }
-        public void AgregarFila(DataTable tabla, string[] valores)
-        {
-            foreach (DataRow fila in tabla.Rows)
-            {
-                if (fila["Id_Sucursal"].ToString() == valores[0])
-                    return;
-            }
-
-            DataRow dr = tabla.NewRow();
-            
-            dr["ID_Sucursal"] = valores[0];
-            dr["Nombre"] = valores[1];
-            dr["Descripcion"] = valores[2];
-            
-            tabla.Rows.Add(dr);
-        }
         protected void btnProvincias_Command(object sender, CommandEventArgs e)
         {
             if (e.CommandName == "BtnProvinciaID")
